@@ -1,0 +1,40 @@
+<p>Titulo: {{ book.title | camelCase }}</p>
+<p>Estrelas: {{ book.rating | number:'1.1-2' }}</p>
+<p>Paginas: {{ book.pages | number}}</p>
+<p>Preço: {{ book.price | currency }}</p>
+<p>Data de lançamento: {{ book.releaseDate | date }}</p>
+<p>Link: {{ book.url }}</p>
+<p>{{ book | json }}</p>
+
+<input type="text" [(ngModel)]="filter" placeholder="Pesquisar" />
+<br />
+<br />
+<input type="text" #newValue placeholder="Digite o nome do curso" />
+<button (click)="addCourse(newValue.value)">adicionar curso</button>
+
+<h3>Pipe Puro</h3>
+<ul>
+  <!-- NÃO USE PIPE EM ARRAY ISSO É APENAS UM EXEMPLO!! -->
+  <li *ngFor=" let bookTitle of books | arrayPipe:filter">
+    {{bookTitle}}
+  </li>
+</ul>
+
+<h3>Pipe Impuro</h3>
+<ul>
+  <!-- NÃO USE PIPE EM ARRAY ISSO É APENAS UM EXEMPLO!! -->
+  <li *ngFor=" let bookTitle of books | arrayPipeImpure:filter">
+    {{bookTitle}}
+  </li>
+</ul>
+
+<h3>Maneira correta de usar filtros em array</h3>
+<ul>
+  <li *ngFor="let bookTitle of getCourses()">
+    {{ bookTitle }}
+  </li>
+</ul>
+
+<h3>Async pipe</h3>
+<p>{{ asyncValue | async }}</p>
+<p>{{ asyncValue2 | async }}</p>
